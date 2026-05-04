@@ -42,7 +42,7 @@ body {
 
 .rich-text {
     & > h1 {
-        @apply font-sans font-bold text-[max(3rem, 5vw)] leading-none;
+        @apply font-sans font-bold text-[max(3rem,5vw)] leading-none;
     }
 
     & > h2 {
