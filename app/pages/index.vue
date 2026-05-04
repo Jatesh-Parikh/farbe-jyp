@@ -1,20 +1,30 @@
 <script setup lang="ts">
-import { asText } from '@prismicio/client'
-import { components } from '~/slices'
+import { components } from '~/slices';
 
-const { client } = usePrismic()
-const { data: page } = await useAsyncData('index', () =>
-  client.getByUID('page', 'home')
+const prismic = usePrismic();
+const { data: page } = await useAsyncData(
+  `[page-uid-home]`,
+  () => prismic.client.getByUID("page", "home"),
 )
+const { data: stripeProducts } = await useFetch("/api/products");
 
-useHead({
-  title: asText(page.value?.data.title)
+useSeoMeta({
+  title: page.value?.data.meta_title ?? undefined,
+  ogTitle: page.value?.data.meta_title ?? undefined,
+  description: page.value?.data.meta_description ?? undefined,
+  ogDescription: page.value?.data.meta_description ?? undefined,
+  ogImage: computed(() => prismic.asImageSrc(page.value?.data.meta_image) ?? undefined),
 })
+
 </script>
 
 
 <template>
   <main>
-    <SliceZone :slices="page?.data.slices ?? []" :components="components" />
+    <SliceZone 
+      :slices="page?.data.slices ?? []" 
+      :components="components" 
+      :context="{ stripeProducts }"  
+    />
   </main>
 </template>
