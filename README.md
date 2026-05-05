@@ -2,7 +2,7 @@
 
 &nbsp;
 
-![Starter screenshot](https://user-images.githubusercontent.com/31219208/228820114-98993841-0b14-40cf-9f39-1b81effe752f.png)
+![Starter screenshot](./ss.png)
 
 &nbsp;
 
